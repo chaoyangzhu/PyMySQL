@@ -92,9 +92,6 @@ class Cursor(object):
 
         # TODO: make sure that conn.escape is correct
 
-        if isinstance(query, unicode):
-            query = query.encode(charset)
-
         if args is not None:
             if isinstance(args, tuple) or isinstance(args, list):
                 escaped_args = tuple(conn.escape(arg) for arg in args)
@@ -105,7 +102,13 @@ class Cursor(object):
                 #Worst case it will throw a Value error
                 escaped_args = conn.escape(args)
 
-            query = query % escaped_args
+            if isinstance(query, bytes):
+                query = query.decode(charset) % escaped_args
+            else:
+                query = query % escaped_args
+
+        if isinstance(query, str):
+            query = query.encode(charset)
 
         result = 0
         try:
