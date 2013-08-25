@@ -1,6 +1,4 @@
-# PyMySQL is looking for a new maintainer!
-
-Unfortunately I don't have the time to maintain PyMySQL anymore. If you're interested in taking over or forking, please [reach out](https://groups.google.com/forum/#!topic/pymysql-users/hrIYyeGMQwY).
+This fork works for Python 3.3.2.
 
 ====================
 PyMySQL Installation
