@@ -77,6 +77,9 @@ def escape_unicode(value):
 def escape_None(value):
     return 'NULL'
 
+def escape_bytes(value):
+    return value
+	
 def escape_timedelta(obj):
     seconds = int(obj.seconds) % 60
     minutes = int(obj.seconds // 60) % 60
@@ -296,6 +299,7 @@ encoders = {
         float: escape_float,
         str: escape_string,
         unicode: escape_unicode,
+        bytes: escape_bytes,
         tuple: escape_sequence,
         list:escape_sequence,
         set:escape_sequence,
